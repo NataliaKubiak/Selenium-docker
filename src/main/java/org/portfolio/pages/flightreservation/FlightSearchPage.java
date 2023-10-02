@@ -1,5 +1,6 @@
 package org.portfolio.pages.flightreservation;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,6 +13,10 @@ public class FlightSearchPage extends BasePage {
     private WebElement passengersSelect;
     @FindBy(id = "search-flights")
     private WebElement searchFlightsButton;
+
+    public FlightSearchPage(WebDriver driver) {
+        super(driver);
+    }
 
     @Override
     public boolean isAt() {

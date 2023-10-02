@@ -16,11 +16,11 @@ public class RegistrationPage extends BasePage {
     private WebElement emailInput;
     @FindBy(id = "password")
     private WebElement passwordInput;
-    @FindBy(id = "street")
+    @FindBy(name = "street")
     private WebElement streetInput;
-    @FindBy(id = "city")
+    @FindBy(name = "city")
     private WebElement cityInput;
-    @FindBy(id = "zip")
+    @FindBy(name = "zip")
     private WebElement zipInput;
     @FindBy(id = "register-btn")
     private WebElement registerButton;
@@ -55,6 +55,6 @@ public class RegistrationPage extends BasePage {
     }
 
     public void register() {
-        registerButton.click();
+        this.registerButton.click();
     }
 }
