@@ -7,14 +7,21 @@ import org.portfolio.pages.flightreservation.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class FlightReservationTest {
 
     private WebDriver driver;
+    private String nomOfPassengers;
+    private String expectedPrice;
 
     @BeforeTest
-    public void setDriver() {
+    @Parameters({"nomOfPassengers", "expectedPrice"})
+    public void setDriver(String nomOfPassengers, String expectedPrice) {
+        this.nomOfPassengers = nomOfPassengers;
+        this.expectedPrice = expectedPrice;
+
         WebDriverManager.chromedriver().setup();
         this.driver = new ChromeDriver();
     }
@@ -44,7 +51,7 @@ public class FlightReservationTest {
         FlightSearchPage flightSearchPage = new FlightSearchPage(driver);
         Assert.assertTrue(flightSearchPage.isAt());
 
-        flightSearchPage.selectPassengers("2");
+        flightSearchPage.selectPassengers(nomOfPassengers);
         flightSearchPage.searchFlights();
     }
 
@@ -62,7 +69,7 @@ public class FlightReservationTest {
         FlightConfirmationPage flightConfirmationPage = new FlightConfirmationPage(driver);
         Assert.assertTrue(flightConfirmationPage.isAt());
 
-        Assert.assertEquals(flightConfirmationPage.getPrice(), "$1169 USD");
+        Assert.assertEquals(flightConfirmationPage.getPrice(), expectedPrice);
     }
 
     @AfterTest
