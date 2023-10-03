@@ -70,7 +70,9 @@ public class DashboardPage extends BasePage {
 
     public void logout() {
         this.userProfilePictureElement.click();
-        this.logoutLink.click();
-        this.modalLogoutButton.click();
+        this.wait.until(ExpectedConditions
+                .visibilityOf(this.logoutLink)).click();
+        this.wait.until(ExpectedConditions.
+                visibilityOf(this.modalLogoutButton)).click();
     }
 }
