@@ -1,0 +1,11 @@
+{
+  "firstName": "Tom",
+  "lastName": "Tomphson",
+  "email": "tomtom@gmail.com",
+  "password": "444",
+  "street": "674 milam St",
+  "city": "Fort Worth",
+  "zip": "90001",
+  "passengerCount": "3",
+  "expectedPrice": "$1753 USD"
+}

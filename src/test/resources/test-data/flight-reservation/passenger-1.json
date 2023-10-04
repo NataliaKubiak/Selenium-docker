@@ -1,0 +1,11 @@
+{
+  "firstName": "mike",
+  "lastName": "smith",
+  "email": "mikesmith@gmail.com",
+  "password": "ms",
+  "street": "123 non main St",
+  "city": "Atlanta",
+  "zip": "30001",
+  "passengerCount": "1",
+  "expectedPrice": "$584 USD"
+}

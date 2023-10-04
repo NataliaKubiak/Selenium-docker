@@ -1,0 +1,11 @@
+{
+  "firstName": "scott",
+  "lastName": "R",
+  "email": "scott_r@gmail.com",
+  "password": "111",
+  "street": "456 non main St",
+  "city": "Los Angeles",
+  "zip": "40001",
+  "passengerCount": "2",
+  "expectedPrice": "$1169 USD"
+}

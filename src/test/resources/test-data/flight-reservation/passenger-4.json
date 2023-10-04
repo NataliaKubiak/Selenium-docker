@@ -1,0 +1,11 @@
+{
+  "firstName": "Anna",
+  "lastName": "Smith",
+  "email": "asmith@gmail.com",
+  "password": "anna",
+  "street": "2265 Great St",
+  "city": "Houston",
+  "zip": "43001",
+  "passengerCount": "4",
+  "expectedPrice": "$2338 USD"
+}
