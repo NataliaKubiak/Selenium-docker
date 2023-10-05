@@ -35,8 +35,9 @@ public class FlightReservationTest extends BaseTest {
     public void registrationConformationTest() {
         RegistrationConfirmationPage registrationConfirmationPage = new RegistrationConfirmationPage(driver);
         Assert.assertTrue(registrationConfirmationPage.isAt());
+        Assert.assertEquals(registrationConfirmationPage.getFirstName(), testData.firstName()+testData.email());
 
-        registrationConfirmationPage.setGoToFlightsSearch();
+        registrationConfirmationPage.goToFlightsSearch();
     }
 
     @Test(dependsOnMethods = "registrationConformationTest")
