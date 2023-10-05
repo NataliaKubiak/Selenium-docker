@@ -7,7 +7,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.portfolio.util.Config;
+import org.portfolio.util.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import java.net.MalformedURLException;
@@ -15,11 +20,17 @@ import java.net.URL;
 
 public abstract class BaseTest {
 
+    private static final Logger log = LoggerFactory.getLogger(BaseTest.class);
     protected WebDriver driver;
+
+    @BeforeSuite
+    public void setupConfig() {
+        Config.initialize();
+    }
 
     @BeforeTest
     public void setDriver() throws MalformedURLException {
-        if(Boolean.getBoolean("selenium.grid.enabled")) {
+        if(Boolean.parseBoolean(Config.get(Constants.GRID_ENABLED))) {
             this.driver = getRemoteDriver();
         } else {
             this.driver = getLocalDriver();
@@ -28,15 +39,17 @@ public abstract class BaseTest {
 
     //if the System Property Variable selenium.grid.enabled = true we will use this driver
     private WebDriver getRemoteDriver() throws MalformedURLException {
-        Capabilities capabilities;
+        Capabilities capabilities = new ChromeOptions();
 
-        if(System.getProperty("browser").equalsIgnoreCase("chrome")) {
-            capabilities = new ChromeOptions();
-        } else {
+        if(Constants.FIREFOX.equalsIgnoreCase(Config.get(Constants.BROWSER))) {
             capabilities = new FirefoxOptions();
         }
+        String urlFormat = Config.get(Constants.GRID_URL_FORMAT);
+        String hubHost = Config.get(Constants.GRID_HUB_HOST);
+        String url = String.format(urlFormat, hubHost);
+        log.info("grid url: {}", url);
 
-        return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        return new RemoteWebDriver(new URL(url), capabilities);
     }
 
     //if the System Property Variable selenium.grid.enabled = false we will use this driver

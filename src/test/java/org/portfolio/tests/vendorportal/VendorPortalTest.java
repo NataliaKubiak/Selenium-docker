@@ -4,6 +4,8 @@ import org.portfolio.pages.vendorportal.DashboardPage;
 import org.portfolio.pages.vendorportal.LoginPage;
 import org.portfolio.tests.BaseTest;
 import org.portfolio.tests.vendorportal.model.VendorPortalTestData;
+import org.portfolio.util.Config;
+import org.portfolio.util.Constants;
 import org.portfolio.util.JsonUtil;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -27,7 +29,7 @@ public class VendorPortalTest extends BaseTest {
 
     @Test
     public void loginTest() {
-        loginPage.goTo("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/vendor-app/index.html");
+        loginPage.goTo(Config.get(Constants.FLIGHT_RESERVATION_URL));
         Assert.assertTrue(loginPage.isAt());
 
         loginPage.login(testData.username(), testData.password());

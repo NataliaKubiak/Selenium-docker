@@ -3,6 +3,8 @@ package org.portfolio.tests.flightreservation;
 import org.portfolio.pages.flightreservation.*;
 import org.portfolio.tests.BaseTest;
 import org.portfolio.tests.flightreservation.model.FlightReservationTestData;
+import org.portfolio.util.Config;
+import org.portfolio.util.Constants;
 import org.portfolio.util.JsonUtil;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -22,7 +24,7 @@ public class FlightReservationTest extends BaseTest {
     @Test
     public void userRegistrationTest() {
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        registrationPage.goTo("https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/reservation-app/index.html");
+        registrationPage.goTo(Config.get(Constants.VENDOR_PORTAL_URL));
         Assert.assertTrue(registrationPage.isAt());
 
         registrationPage.enterUserDetails(testData.firstName(), testData.lastName());
