@@ -77,7 +77,7 @@
                 <version>${maven.surefire.version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <browser>firefox</browser>
+                        <browser>chrome</browser>
                         <selenium.grid.enabled>true</selenium.grid.enabled>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
