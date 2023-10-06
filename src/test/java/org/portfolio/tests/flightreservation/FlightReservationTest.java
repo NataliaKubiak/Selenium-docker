@@ -24,7 +24,7 @@ public class FlightReservationTest extends BaseTest {
     @Test
     public void userRegistrationTest() {
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        registrationPage.goTo(Config.get(Constants.VENDOR_PORTAL_URL));
+        registrationPage.goTo(Config.get(Constants.FLIGHT_RESERVATION_URL));
         Assert.assertTrue(registrationPage.isAt());
 
         registrationPage.enterUserDetails(testData.firstName(), testData.lastName());

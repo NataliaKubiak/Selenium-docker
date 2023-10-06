@@ -29,7 +29,7 @@ public class VendorPortalTest extends BaseTest {
 
     @Test
     public void loginTest() {
-        loginPage.goTo(Config.get(Constants.FLIGHT_RESERVATION_URL));
+        loginPage.goTo(Config.get(Constants.VENDOR_PORTAL_URL));
         Assert.assertTrue(loginPage.isAt());
 
         loginPage.login(testData.username(), testData.password());
