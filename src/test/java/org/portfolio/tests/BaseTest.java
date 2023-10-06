@@ -7,17 +7,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.portfolio.listener.TestListener;
 import org.portfolio.util.Config;
 import org.portfolio.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+@Listeners({TestListener.class})
 public abstract class BaseTest {
 
     private static final Logger log = LoggerFactory.getLogger(BaseTest.class);
@@ -29,12 +33,14 @@ public abstract class BaseTest {
     }
 
     @BeforeTest
-    public void setDriver() throws MalformedURLException {
+    public void setDriver(ITestContext ctx) throws MalformedURLException {
         if(Boolean.parseBoolean(Config.get(Constants.GRID_ENABLED))) {
             this.driver = getRemoteDriver();
         } else {
             this.driver = getLocalDriver();
         }
+        //here we store created driver in context=ctx
+        ctx.setAttribute(Constants.DRIVER, this.driver);
     }
 
     //if the System Property Variable selenium.grid.enabled = true we will use this driver
